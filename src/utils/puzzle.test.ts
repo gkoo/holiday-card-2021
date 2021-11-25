@@ -13,8 +13,8 @@ test('puzzle', () => {
   expect(puzzle.width).toEqual(5);
 });
 
-test('rowClues', () => {
-  expect(puzzle.rowClues()).toEqual(
+test('generateRowClues', () => {
+  expect(puzzle.generateRowClues()).toEqual(
     [
       [1, 1],
       [0],
@@ -25,9 +25,9 @@ test('rowClues', () => {
   );
 });
 
-describe('columnClues', () => {
+describe('generateColumnClues', () => {
   it('calculates the clues correctly', () => {
-    expect(puzzle.columnClues()).toEqual([
+    expect(puzzle.generateColumnClues()).toEqual([
       [1, 2],
       [1, 1],
       [0],

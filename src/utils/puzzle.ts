@@ -3,12 +3,17 @@ class Puzzle {
   width: number;
   solution: number[][];
   state: number[][];
+  rowClues: number[][];
+  columnClues: number[][];
 
   constructor(width: number, height: number, solution: number[][]) {
     this.height = height;
     this.width = width;
     this.solution = solution;
     this.state = [];
+    this.initializeState();
+    this.rowClues = this.generateRowClues();
+    this.columnClues = this.generateColumnClues();
   }
 
   initializeState() {
@@ -21,11 +26,11 @@ class Puzzle {
     }
   }
 
-  rowClues() {
+  generateRowClues() {
     return this.solution.map(this.cellClues);
   }
 
-  columnClues() {
+  generateColumnClues() {
     const clues = [];
     for (let columnNum = 0; columnNum < this.width; ++columnNum) {
       clues.push(this.cellClues(this.solution.map(row => row[columnNum])));
@@ -37,11 +42,9 @@ class Puzzle {
     let count = 0;
     const clues = [];
     for (let i=0; i < cells.length; ++i) {
-      console.log(`cell is ${cells[i]}`);
       if (cells[i] !== 0) {
         ++count;
       } else if (count > 0) {
-        console.log('pushing');
         clues.push(count);
         count = 0;
       }
