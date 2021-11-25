@@ -1,0 +1,16 @@
+.picross-row {
+  height: 50px;
+}
+
+.picross-cell {
+  background-color: #eee;
+  display: inline-block;
+  margin: -2px 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.picross-cell.checked {
+  background-color: #006;
+}
