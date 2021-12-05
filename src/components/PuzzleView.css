@@ -4,7 +4,7 @@
 }
 
 .picross-cell.filled {
-  background-color: #006;
+  background-color: #3f51b5;
 }
 
 .picross-cell.marked {
@@ -12,7 +12,7 @@
 }
 
 .picross-cell.xed {
-  background-color: #d00;
+  background-color: #ff7961;
 }
 
 .clue {

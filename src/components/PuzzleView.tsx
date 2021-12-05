@@ -18,6 +18,7 @@ const PuzzleView: React.FC<{
 }> = ({ puzzle }) => {
   const [puzzleState, setPuzzleState] = useState(puzzle.state);
   const [num, setNum] = useState(0);
+  const [solved, setSolved] = useState<boolean>(false);
 
   const handleClick = (e: MouseEvent, rowIdx: number, colIdx: number) => {
     e.preventDefault();
@@ -36,13 +37,21 @@ const PuzzleView: React.FC<{
       default:
         return;
     }
+
+    // redraw the puzzle state
     setPuzzleState(puzzle.state);
+
+    setSolved(puzzle.isSolved());
+
     // For some reason the component doesn't redraw without the following line...?
     setNum(num ? 0 : 1);
   };
 
   return (
     <Box sx={{ width: 500 }}>
+      {
+        solved ? <h1>You solved it!</h1> : undefined
+      }
       <Table className='puzzle-table'>
         <TableHead>
           <TableRow>

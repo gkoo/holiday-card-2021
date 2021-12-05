@@ -73,6 +73,27 @@ class Puzzle {
     }
   }
 
+  fillInSolution() {
+    this.state.forEach((row, rowIdx) => {
+      row.forEach((col, colIdx) => {
+        this.state[rowIdx][colIdx] = this.solution[rowIdx][colIdx] || CellState.Xed;
+      })
+    });
+    console.log(Puzzle.toString(this.state));
+  }
+
+  isSolved() {
+    for (let i = 0; i < this.height; ++i) {
+      for (let j = 0; j < this.width; ++j) {
+        if (this.state[i][j] !== this.solution[i][j]) { return false; }
+      }
+    }
+
+    // The puzzle is solved!
+    this.fillInSolution();
+    return true;
+  }
+
   static toString(state: number[][]) {
     return state.map(row =>
       row.map(cell => cell ? 'o' : ' ').join(' ')
