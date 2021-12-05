@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 
+import Layout from './Layout';
 import Puzzle from '../utils/puzzle';
 import PuzzleView from './PuzzleView';
 
@@ -24,13 +25,15 @@ const Tester = () => {
   };
 
   return (
-    <Container>
-      <h1>Hello, world!</h1>
-      <h2>Build from input</h2>
-      <TextField id="puzzle-input" label="Input Solution" variant="outlined" onChange={handlePuzzleInput} value={puzzleInput}/>
-      <Button variant="contained" onClick={generatePuzzle}>Generate</Button>
-      {puzzle && <PuzzleView puzzle={puzzle}/>}
-    </Container>
+    <Layout>
+      <Container>
+        <h1>Hello, world!</h1>
+        <h2>Build from input</h2>
+        <TextField id="puzzle-input" label="Input Solution" variant="outlined" onChange={handlePuzzleInput} value={puzzleInput}/>
+        <Button variant="contained" onClick={generatePuzzle}>Generate</Button>
+        {puzzle && <PuzzleView puzzle={puzzle}/>}
+      </Container>
+    </Layout>
   );
 };
 

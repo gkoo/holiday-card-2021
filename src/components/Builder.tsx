@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import Layout from './Layout';
 import Puzzle from '../utils/puzzle';
 import PuzzleView from './PuzzleView';
 
@@ -43,51 +44,53 @@ const Builder = () => {
   };
 
   return (
-    <Container>
-      <h1>Puzzle Builder</h1>
-      <Box sx={{ minWidth: 120 }}>
-        {/* Width */}
-        <FormControl>
-          <InputLabel id="width-label">Width</InputLabel>
-          <Select
-            labelId="width-label"
-            id="change-width"
-            value={width}
-            label="Width"
-            onChange={handleChangeWidth}
-          >
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
+    <Layout>
+      <Container>
+        <h1>Puzzle Builder</h1>
+        <Box sx={{ minWidth: 120 }}>
+          {/* Width */}
+          <FormControl>
+            <InputLabel id="width-label">Width</InputLabel>
+            <Select
+              labelId="width-label"
+              id="change-width"
+              value={width}
+              label="Width"
+              onChange={handleChangeWidth}
+            >
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+            </Select>
+          </FormControl>
 
-        {/* Height */}
-        <FormControl>
-          <InputLabel id="height-label">Height</InputLabel>
-          <Select
-            labelId="height-label"
-            id="change-height"
-            value={height}
-            label="Height"
-            onChange={handleChangeHeight}
-          >
-            <MenuItem value={5}>5</MenuItem>
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={15}>15</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-          </Select>
-        </FormControl>
+          {/* Height */}
+          <FormControl>
+            <InputLabel id="height-label">Height</InputLabel>
+            <Select
+              labelId="height-label"
+              id="change-height"
+              value={height}
+              label="Height"
+              onChange={handleChangeHeight}
+            >
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={15}>15</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+            </Select>
+          </FormControl>
 
-        <br />
-        <br />
-        <Button variant="contained" onClick={generatePuzzle}>Generate</Button>
-        {puzzle && <Button variant="contained" onClick={exportPuzzle}>Export</Button>}
-      </Box>
+          <br />
+          <br />
+          <Button variant="contained" onClick={generatePuzzle}>Generate</Button>
+          {puzzle && <Button variant="contained" onClick={exportPuzzle}>Export</Button>}
+        </Box>
 
-      {puzzle && <PuzzleView puzzle={puzzle}/>}
-    </Container>
+        {puzzle && <PuzzleView puzzle={puzzle}/>}
+      </Container>
+    </Layout>
   );
 };
 

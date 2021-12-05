@@ -11,13 +11,15 @@ import Tester from './components/Tester';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <Routes>
-        <Route path="/builder" element={<Builder/>} />
-        <Route path="/tester" element={<Tester/>} />
-        <Route path="/" element={<Homepage/>} />
-      </Routes>
-    </Router>
+    <>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Routes>
+          <Route path="/builder" element={<Builder/>} />
+          <Route path="/tester" element={<Tester/>} />
+          <Route path="/" element={<Homepage/>} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

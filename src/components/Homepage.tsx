@@ -2,6 +2,7 @@ import React from 'react';
 
 import Container from '@mui/material/Container';
 
+import Layout from './Layout';
 import Puzzle from '../utils/puzzle';
 import PuzzleView from './PuzzleView';
 
@@ -15,10 +16,12 @@ const Homepage = () => {
   ]);
 
   return (
-    <Container>
-      <h1>Hello, world!</h1>
-      <PuzzleView puzzle={puzzle}/>
-    </Container>
+    <Layout>
+      <Container>
+        <h1>Hello, world!</h1>
+        <PuzzleView puzzle={puzzle}/>
+      </Container>
+    </Layout>
   );
 };
 
