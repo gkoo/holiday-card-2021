@@ -5,22 +5,27 @@ export enum CellState {
   Marked,
 }
 
+interface PuzzleOptions {
+  test: boolean;
+}
+
 class Puzzle {
   height: number;
   width: number;
+  options: PuzzleOptions;
   solution: number[][];
   state: number[][];
-  rowClues: number[][];
-  columnClues: number[][];
+  rowClues: number[][] = [];
+  columnClues: number[][] = [];
 
-  constructor(width: number, height: number, solution: number[][]) {
+  constructor(width: number, height: number, solution: number[][], options: PuzzleOptions = { test: false }) {
     this.height = height;
     this.width = width;
     this.solution = solution;
     this.state = [];
+    this.options = options;
     this.initializeState();
-    this.rowClues = this.generateRowClues();
-    this.columnClues = this.generateColumnClues();
+    this.generateClues();
   }
 
   initializeState() {
@@ -31,6 +36,11 @@ class Puzzle {
       }
       this.state.push(row);
     }
+  }
+
+  generateClues() {
+    this.rowClues = this.generateRowClues();
+    this.columnClues = this.generateColumnClues();
   }
 
   generateRowClues() {
@@ -66,10 +76,19 @@ class Puzzle {
   }
 
   toggleCellState(rowIdx: number, colIdx: number, state: CellState) {
+    let stateToSet;
+
     if (this.state[rowIdx][colIdx] === state) {
-      this.state[rowIdx][colIdx] = CellState.Empty;
+      stateToSet = CellState.Empty;
     } else {
-      this.state[rowIdx][colIdx] = state;
+      stateToSet = state;
+    }
+
+    this.state[rowIdx][colIdx] = stateToSet;
+
+    if (this.options.test) {
+      this.solution = this.state;
+      this.generateClues();
     }
   }
 
@@ -79,7 +98,6 @@ class Puzzle {
         this.state[rowIdx][colIdx] = this.solution[rowIdx][colIdx] || CellState.Xed;
       })
     });
-    console.log(Puzzle.toString(this.state));
   }
 
   isSolved() {
@@ -90,13 +108,15 @@ class Puzzle {
     }
 
     // The puzzle is solved!
-    this.fillInSolution();
+    if (!this.options.test) {
+      this.fillInSolution();
+    }
     return true;
   }
 
   static toString(state: number[][]) {
     return state.map(row =>
-      row.map(cell => cell ? 'o' : ' ').join(' ')
+      row.map(cell => cell ? 'o' : 'x').join(' ')
     ).join('\n');
   }
 }

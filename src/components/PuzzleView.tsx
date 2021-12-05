@@ -17,6 +17,8 @@ const PuzzleView: React.FC<{
   puzzle: Puzzle
 }> = ({ puzzle }) => {
   const [puzzleState, setPuzzleState] = useState(puzzle.state);
+  const [rowClues, setRowClues] = useState(puzzle.rowClues);
+  const [columnClues, setColumnClues] = useState(puzzle.columnClues);
   const [num, setNum] = useState(0);
   const [solved, setSolved] = useState<boolean>(false);
 
@@ -41,14 +43,21 @@ const PuzzleView: React.FC<{
     // redraw the puzzle state
     setPuzzleState(puzzle.state);
 
-    setSolved(puzzle.isSolved());
+    if (puzzle.options.test) {
+      setRowClues(puzzle.rowClues);
+      setColumnClues(puzzle.columnClues);
+    }
+
+    if (!puzzle.options.test) {
+      setSolved(puzzle.isSolved());
+    }
 
     // For some reason the component doesn't redraw without the following line...?
     setNum(num ? 0 : 1);
   };
 
   return (
-    <Box sx={{ width: 500 }}>
+    <Box>
       {
         solved ? <h1>You solved it!</h1> : undefined
       }
@@ -58,7 +67,7 @@ const PuzzleView: React.FC<{
             <TableCell sx={{ border: 0 }}>
               {/* empty for row clue */}
             </TableCell>
-            {puzzle.columnClues.map((clues, colIdx) =>
+            {columnClues.map((clues, colIdx) =>
               <TableCell key={`col-${colIdx}`} sx={{ border: 0 }}>
                 <span>
                   {
@@ -85,7 +94,7 @@ const PuzzleView: React.FC<{
                   align='right'
                 >
                   {
-                    puzzle.rowClues[rowIdx].map(
+                    rowClues[rowIdx].map(
                     (clue, clueIdx) =>
                       <span key={`clue-${rowIdx}-${clueIdx}`} className='clue'>{clue}</span>
                     )
