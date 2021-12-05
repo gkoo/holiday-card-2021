@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/holiday-card-2021/static/css/main.2c2c551d.chunk.css",
-    "main.js": "/holiday-card-2021/static/js/main.8e36c259.chunk.js",
-    "main.js.map": "/holiday-card-2021/static/js/main.8e36c259.chunk.js.map",
+    "main.css": "/holiday-card-2021/static/css/main.c1ef8506.chunk.css",
+    "main.js": "/holiday-card-2021/static/js/main.d2359aca.chunk.js",
+    "main.js.map": "/holiday-card-2021/static/js/main.d2359aca.chunk.js.map",
     "runtime-main.js": "/holiday-card-2021/static/js/runtime-main.01963e8c.js",
     "runtime-main.js.map": "/holiday-card-2021/static/js/runtime-main.01963e8c.js.map",
     "static/js/2.09d490fc.chunk.js": "/holiday-card-2021/static/js/2.09d490fc.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.49109a34.chunk.js": "/holiday-card-2021/static/js/3.49109a34.chunk.js",
     "static/js/3.49109a34.chunk.js.map": "/holiday-card-2021/static/js/3.49109a34.chunk.js.map",
     "index.html": "/holiday-card-2021/index.html",
-    "static/css/main.2c2c551d.chunk.css.map": "/holiday-card-2021/static/css/main.2c2c551d.chunk.css.map",
+    "static/css/main.c1ef8506.chunk.css.map": "/holiday-card-2021/static/css/main.c1ef8506.chunk.css.map",
     "static/js/2.09d490fc.chunk.js.LICENSE.txt": "/holiday-card-2021/static/js/2.09d490fc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.01963e8c.js",
     "static/js/2.09d490fc.chunk.js",
-    "static/css/main.2c2c551d.chunk.css",
-    "static/js/main.8e36c259.chunk.js"
+    "static/css/main.c1ef8506.chunk.css",
+    "static/js/main.d2359aca.chunk.js"
   ]
 }
