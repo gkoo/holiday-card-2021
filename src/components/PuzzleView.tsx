@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 
 import cx from 'classnames';
 
@@ -9,14 +9,36 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import Puzzle from '../utils/puzzle';
+import Puzzle, { CellState } from '../utils/puzzle';
 
 import './PuzzleView.css';
 
-const PuzzleView = ({ puzzle }) => {
-  const [puzzleState, setPuzzleState] = useState<Puzzle>(puzzle);
+const PuzzleView: React.FC<{
+  puzzle: Puzzle
+}> = ({ puzzle }) => {
+  const [puzzleState, setPuzzleState] = useState(puzzle.state);
+  const [num, setNum] = useState(0);
 
-  const handleClick = (rowIdx: number, colIdx: number) => {
+  const handleClick = (e: MouseEvent, rowIdx: number, colIdx: number) => {
+    e.preventDefault();
+
+    switch(e.type) {
+      case 'click':
+        if (e.shiftKey) {
+          puzzle.toggleCellState(rowIdx, colIdx, CellState.Marked);
+        } else {
+          puzzle.toggleCellState(rowIdx, colIdx, CellState.Filled);
+        }
+        break;
+      case 'contextmenu':
+        puzzle.toggleCellState(rowIdx, colIdx, CellState.Xed);
+        break;
+      default:
+        return;
+    }
+    setPuzzleState(puzzle.state);
+    // For some reason the component doesn't redraw without the following line...?
+    setNum(num ? 0 : 1);
   };
 
   return (
@@ -27,10 +49,14 @@ const PuzzleView = ({ puzzle }) => {
             <TableCell sx={{ border: 0 }}>
               {/* empty for row clue */}
             </TableCell>
-            {puzzleState.columnClues.map((clues, colIdx) =>
+            {puzzle.columnClues.map((clues, colIdx) =>
               <TableCell key={`col-${colIdx}`} sx={{ border: 0 }}>
                 <span>
-                  {clues.map((clue, clueIdx) => <span key={`clue-${colIdx}-${clueIdx}`}>{clue}<br/></span>)}
+                  {
+                    clues.map((clue, clueIdx) =>
+                      <span key={`clue-${colIdx}-${clueIdx}`}>{clue}<br/></span>
+                    )
+                  }
                 </span>
               </TableCell>
             )}
@@ -38,7 +64,7 @@ const PuzzleView = ({ puzzle }) => {
         </TableHead>
         <TableBody>
           {
-            puzzleState.state.map((row, rowIdx) => (
+            puzzleState.map((row, rowIdx) => (
               <TableRow key={`row-${rowIdx}`}>
                 <TableCell
                   className='clue-labels row-clues'
@@ -49,7 +75,12 @@ const PuzzleView = ({ puzzle }) => {
                   }}
                   align='right'
                 >
-                  {puzzleState.rowClues[rowIdx].map((clue, clueIdx) => <span key={`clue-${rowIdx}-${clueIdx}`} className='clue'>{clue}</span>)}
+                  {
+                    puzzle.rowClues[rowIdx].map(
+                    (clue, clueIdx) =>
+                      <span key={`clue-${rowIdx}-${clueIdx}`} className='clue'>{clue}</span>
+                    )
+                  }
                 </TableCell>
                 {
                   row.map((cell, colIdx) =>
@@ -60,8 +91,9 @@ const PuzzleView = ({ puzzle }) => {
                         width: 25,
                         height: 25,
                       }}
-                      onClick={() => handleClick(rowIdx, colIdx)}
-                      className={cx({ 'picross-cell': true, checked: cell === 1 })}
+                      onClick={e => handleClick(e, rowIdx, colIdx)}
+                      onContextMenu={e => handleClick(e, rowIdx, colIdx)}
+                      className={cx({ 'picross-cell': true, filled: cell === CellState.Filled, xed: cell === CellState.Xed, marked: cell === CellState.Marked })}
                     />
                   )
                 }

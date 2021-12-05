@@ -1,3 +1,10 @@
+export enum CellState {
+  Empty,
+  Filled,
+  Xed,
+  Marked,
+}
+
 class Puzzle {
   height: number;
   width: number;
@@ -56,6 +63,14 @@ class Puzzle {
       clues.push(0);
     }
     return clues;
+  }
+
+  toggleCellState(rowIdx: number, colIdx: number, state: CellState) {
+    if (this.state[rowIdx][colIdx] === state) {
+      this.state[rowIdx][colIdx] = CellState.Empty;
+    } else {
+      this.state[rowIdx][colIdx] = state;
+    }
   }
 
   static toString(state: number[][]) {

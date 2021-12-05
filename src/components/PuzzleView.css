@@ -1,9 +1,18 @@
 .picross-cell {
   background-color: #eee;
+  cursor: pointer;
 }
 
-.picross-cell.checked {
+.picross-cell.filled {
   background-color: #006;
+}
+
+.picross-cell.marked {
+  background-color: #fff;
+}
+
+.picross-cell.xed {
+  background-color: #d00;
 }
 
 .clue {
