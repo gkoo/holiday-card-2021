@@ -111,7 +111,16 @@ const PuzzleView: React.FC<{
                       }}
                       onClick={e => handleClick(e, rowIdx, colIdx)}
                       onContextMenu={e => handleClick(e, rowIdx, colIdx)}
-                      className={cx({ 'picross-cell': true, filled: cell === CellState.Filled, xed: cell === CellState.Xed, marked: cell === CellState.Marked })}
+                      className={
+                        cx({
+                          'picross-cell': true,
+                          'highlight-border-top': rowIdx % 5 === 0,
+                          'highlight-border-left': colIdx % 5 === 0,
+                          filled: cell === CellState.Filled,
+                          xed: cell === CellState.Xed,
+                          marked: cell === CellState.Marked
+                        })
+                      }
                     />
                   )
                 }

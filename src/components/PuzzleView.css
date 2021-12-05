@@ -1,3 +1,11 @@
+.highlight-border-top {
+  border-top: 3px solid #4aedc4 !important;
+}
+
+.highlight-border-left {
+  border-left: 3px solid #4aedc4 !important;
+}
+
 .picross-cell {
   background-color: #eee;
   cursor: pointer;
