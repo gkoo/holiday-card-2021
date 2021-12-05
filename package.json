@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "react-scripts build && gh-pages -d build"
+    "deploy": "PUBLIC_URL=/holiday-card-2021/ react-scripts build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
