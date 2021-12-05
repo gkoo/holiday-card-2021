@@ -103,7 +103,11 @@ class Puzzle {
   isSolved() {
     for (let i = 0; i < this.height; ++i) {
       for (let j = 0; j < this.width; ++j) {
-        if (this.state[i][j] !== this.solution[i][j]) { return false; }
+        const stateCell = this.state[i][j];
+        const solutionCell = this.solution[i][j];
+        if ((stateCell === CellState.Filled && solutionCell !== CellState.Filled) || (solutionCell === CellState.Filled && stateCell !== CellState.Filled)) {
+          return false;
+        }
       }
     }
 
