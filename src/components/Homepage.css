@@ -1,0 +1,9 @@
+.photo {
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+#photo-1 {
+  background-image: url(../images/vaccine.jpg);
+  height: 240px;
+}
