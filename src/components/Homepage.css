@@ -1,15 +1,37 @@
+body {
+  background-image: url(../images/bear_lake_bg.jpg);
+  background-size: cover;
+}
+
 .holiday-card-row {
   align-content: start;
+  align-items: stretch;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-evenly;
+}
+
+.greeting-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  font-weight: normal;
+}
+
+.handwriting {
+  font-family: 'Alex Brush', cursive;
+  font-size: 1.5em;
+  font-weight: normal;
 }
 
 .photo {
   background-size: cover;
   background-position: 50% 50%;
   min-width: 200px;
-  height: 240px;
+  min-height: 240px;
+}
+
+#greeting {
+  max-width: 800px;
 }
 
 #photo-1 {
