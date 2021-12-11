@@ -1,9 +1,49 @@
+.holiday-card-row {
+  align-content: start;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
 .photo {
   background-size: cover;
   background-position: 50% 50%;
+  min-width: 200px;
+  height: 240px;
 }
 
 #photo-1 {
   background-image: url(../images/vaccine.jpg);
-  height: 240px;
+}
+
+#photo-2 {
+  background-image: url(../images/aj_shirts.jpg);
+}
+
+#photo-3 {
+  background-image: url(../images/bear_lake.jpg);
+}
+
+#photo-4 {
+  background-image: url(../images/boat_amy_yuriko.jpg);
+}
+
+#photo-5 {
+  background-image: url(../images/boat_champagne.jpg);
+}
+
+#photo-6 {
+  background-image: url(../images/boat_wave.jpg);
+}
+
+#photo-7 {
+  background-image: url(../images/curry_up_now.jpg);
+}
+
+#photo-8 {
+  background-image: url(../images/lilies.jpg);
+}
+
+#photo-9 {
+  background-image: url(../images/spider_cakes.jpg);
 }
